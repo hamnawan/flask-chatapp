@@ -1,0 +1,23 @@
+version: '3'
+services:
+  # Flask application service
+  web:
+    build:
+      context: .  # Use the current directory as the build context
+    ports:
+      - "5000:5000"  # Map container port 5000 to host port 5000
+    volumes:
+      - ./your_database.db:/app/your_database.db  # Mount the SQLite database file
+    environment:
+      SQLALCHEMY_DATABASE_URI: 'sqlite:///your_database.db'  # Set the database URL
+      SECRET_KEY: 'your-secret-key'
+      JWT_SECRET_KEY: 'your-jwt-secret-key'
+      JWT_EXPIRATION_DELTA: '1h'  # Token expiration time
+    depends_on:
+      - db  # Ensure that the database container is started before the web container
+
+  # Database service
+  db:
+    image: "sqlite:latest"  # Use the official SQLite Docker image
+    volumes:
+      - ./your_database.db:/var/lib/sqlite/data/your_database.db  # Mount the SQLite database file
