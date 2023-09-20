@@ -37,7 +37,7 @@ Messages sent via WebSocket are broadcasted to all users in the chat room in rea
 #### Requirements
 
 ### Detail Design and Architecture
-The application include mysql database for development phase.
+The application include sqlite database for development phase.
 ### Environment setup
 
 #### **Step-1** Clone the repo
